@@ -24,6 +24,13 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
       // Get current tab
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+      
+      // Check if we're on a Chrome internal page
+      if (tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://') || tab.url.startsWith('about:')) {
+        showChromePageMessage();
+        return;
+      }
+      
       currentDomain = new URL(tab.url).hostname;
       
       // Analyze cookies for current domain
@@ -35,14 +42,51 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
+  function showChromePageMessage() {
+    loading.classList.add('hidden');
+    results.classList.remove('hidden');
+    statusValue.textContent = 'Chrome Page';
+    statusDescription.textContent = 'Privacy Sentinel cannot analyze Chrome internal pages';
+    statusValue.style.color = '#9E9E9E';
+    actions.classList.add('hidden');
+    cookieSummary.classList.add('hidden');
+  }
+  
   async function analyzeCookies() {
     try {
-      // Get all cookies for current domain
-      const cookies = await chrome.cookies.getAll({ domain: currentDomain });
-      detectedCookies = cookies;
+      console.log('Analyzing cookies for domain:', currentDomain);
+      
+      // Get cookies specifically for the current domain and its subdomains
+      const domainCookies = await chrome.cookies.getAll({ domain: currentDomain });
+      console.log('Domain cookies:', domainCookies);
+      
+      // Also get cookies for subdomains
+      const subdomainCookies = await chrome.cookies.getAll({ domain: '.' + currentDomain });
+      console.log('Subdomain cookies:', subdomainCookies);
+      
+      // Combine domain and subdomain cookies
+      detectedCookies = [...domainCookies, ...subdomainCookies];
+      
+      // Remove duplicates based on name and domain
+      const uniqueCookies = [];
+      const seen = new Set();
+      
+      detectedCookies.forEach(cookie => {
+        const key = `${cookie.name}-${cookie.domain}`;
+        if (!seen.has(key)) {
+          seen.add(key);
+          uniqueCookies.push(cookie);
+        }
+      });
+      
+      detectedCookies = uniqueCookies;
+      console.log('Total unique cookies detected:', detectedCookies.length);
+      console.log('All detected cookies:', detectedCookies);
       
       // Analyze for tracking cookies
-      trackingCookies = analyzeTrackingCookies(cookies);
+      trackingCookies = analyzeTrackingCookies(detectedCookies);
+      console.log('Tracking cookies found:', trackingCookies.length);
+      console.log('Tracking cookies:', trackingCookies);
       
       // Show results
       displayResults();
@@ -51,6 +95,21 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error('Error analyzing cookies:', error);
       showError('Failed to analyze cookies');
     }
+  }
+  
+  function isTrackingDomain(domain) {
+    const trackingDomains = [
+      'google.com', 'googleadservices.com', 'doubleclick.net', 'googlesyndication.com',
+      'facebook.com', 'fb.com', 'instagram.com',
+      'amazon-adsystem.com', 'amazon.com',
+      'bing.com', 'msn.com',
+      'taboola.com', 'outbrain.com',
+      'yandex.ru', 'baidu.com'
+    ];
+    
+    return trackingDomains.some(trackingDomain => 
+      domain === trackingDomain || domain.endsWith('.' + trackingDomain)
+    );
   }
   
   function analyzeTrackingCookies(cookies) {
@@ -64,23 +123,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     return cookies.filter(cookie => {
       const name = cookie.name.toLowerCase();
-      const domain = cookie.domain.toLowerCase();
+      const domain = cookie.domain.startsWith('.') ? cookie.domain.slice(1) : cookie.domain;
       
       // Check for tracking patterns in name
       const hasTrackingName = trackingPatterns.some(pattern => pattern.test(name));
       
       // Check for known tracking domains
-      const isTrackingDomain = domain.includes('google') || 
-                              domain.includes('facebook') || 
-                              domain.includes('doubleclick') ||
-                              domain.includes('amazon-adsystem') ||
-                              domain.includes('bing') ||
-                              domain.includes('taboola');
+      const isKnownTrackingDomain = isTrackingDomain(domain);
       
-      // Check for third-party cookies
-      const isThirdParty = !domain.includes(currentDomain);
-      
-      return hasTrackingName || isTrackingDomain || isThirdParty;
+      // Only flag as tracking if it has a tracking name OR is from a known tracking domain
+      // Don't flag all third-party cookies as tracking
+      return hasTrackingName || isKnownTrackingDomain;
     });
   }
   
@@ -115,7 +168,9 @@ document.addEventListener('DOMContentLoaded', function() {
   function displayCookieSummary() {
     const summary = trackingCookies.map(cookie => {
       const domain = cookie.domain.startsWith('.') ? cookie.domain.slice(1) : cookie.domain;
-      return `• ${cookie.name} (${domain})`;
+      const isThirdParty = !domain.includes(currentDomain);
+      const type = isThirdParty ? ' (Third-party)' : ' (First-party)';
+      return `• ${cookie.name} (${domain})${type}`;
     }).join('<br>');
     
     cookieDetails.innerHTML = summary || 'No tracking cookies detected';
