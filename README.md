@@ -1,16 +1,18 @@
-# Hello Chrome Extension
+# Privacy Sentinel Chrome Extension
 
-A simple Chrome extension that shows a "Hello" popup message whenever you open a new window or navigate to a new page.
+A privacy-focused Chrome extension that enhances user privacy by providing transparency and control over website cookies. The extension proactively analyzes cookies on newly visited websites, identifies those with potential tracking capabilities, and empowers users to make informed decisions about their acceptance.
 
-## Features
+## 🛡️ Features
 
-- 🎉 Shows a beautiful animated "Hello" notification when you visit any webpage
-- 👆 Click the extension icon to open a popup with additional functionality
-- 🎨 Modern gradient design with smooth animations
-- ⏰ Auto-dismissing notifications (5 seconds)
-- 🔄 Works on all websites
+- **🔍 Cookie Detection & Analysis**: Automatically detects and analyzes cookies on every website you visit
+- **🎯 Tracking Cookie Identification**: Uses pattern matching and known tracker databases to identify potential tracking cookies
+- **🚫 Smart Blocking**: Allows you to block tracking cookies while preserving essential functionality
+- **📊 Privacy Status Dashboard**: Real-time privacy status and cookie summary in the extension popup
+- **💾 Persistent Preferences**: Remembers your decisions for each website to avoid repeated prompts
+- **🎨 Non-Intrusive Design**: Beautiful, modern interface that doesn't disrupt your browsing experience
+- **⚡ Performance Optimized**: Minimal impact on browser performance and page loading times
 
-## Installation
+## 🚀 Installation
 
 ### For Development/Testing:
 
@@ -34,50 +36,116 @@ A simple Chrome extension that shows a "Hello" popup message whenever you open a
    - The extension should now appear in your extensions list
 
 5. **Test the Extension**
-   - Open any website
-   - You should see a "Hello" notification appear in the top-right corner
-   - Click the extension icon in the toolbar to see the popup
+   - Visit any website with tracking cookies (e.g., news sites, e-commerce sites)
+   - You should see a privacy notification if tracking cookies are detected
+   - Click the extension icon to see detailed cookie analysis
 
-## Files Structure
+## 📁 Files Structure
 
 ```
-├── manifest.json      # Extension configuration
-├── popup.html         # Popup interface
-├── popup.js           # Popup functionality
-├── content.js         # Content script (runs on web pages)
-├── background.js      # Background service worker
+├── manifest.json      # Extension configuration (Manifest V3)
+├── popup.html         # Privacy dashboard popup interface
+├── popup.js           # Popup functionality and cookie analysis
+├── content.js         # Content script for page-level privacy notifications
+├── background.js      # Background service worker for cookie monitoring
+├── icons/             # Extension icons (placeholders)
+│   ├── icon16.png
+│   ├── icon48.png
+│   └── icon128.png
 └── README.md          # This file
 ```
 
-## How It Works
+## 🔧 How It Works
 
-- **manifest.json**: Defines the extension's properties, permissions, and structure
-- **popup.html/js**: Creates the popup that appears when clicking the extension icon
-- **content.js**: Runs on every webpage and shows the "Hello" notification
-- **background.js**: Handles background tasks and extension lifecycle
+### Cookie Detection
+- **Pattern Matching**: Identifies tracking cookies using regex patterns for common tracking cookie names
+- **Domain Analysis**: Recognizes known tracking domains (Google, Facebook, etc.)
+- **Third-Party Detection**: Flags cookies from external domains as potential trackers
 
-## Customization
+### Privacy Protection
+- **Real-time Monitoring**: Analyzes cookies as they're being set
+- **User Control**: Provides clear options to block or allow cookies
+- **Persistent Decisions**: Remembers your choices to avoid repeated prompts
+- **Smart Blocking**: Removes tracking cookies while preserving essential site functionality
 
-You can easily customize the extension by:
+### User Interface
+- **Privacy Dashboard**: Extension popup shows current privacy status and cookie summary
+- **In-page Notifications**: Non-intrusive alerts when tracking cookies are detected
+- **Action Buttons**: Clear options to block trackers, allow all, or manage cookies
 
-- Modifying the message in `content.js`
-- Changing the styling in `popup.html` or `content.js`
-- Adding new features to the popup
-- Adjusting the notification timing
+## 🎯 Tracking Cookie Patterns
 
-## Permissions
+The extension detects tracking cookies based on:
 
-This extension uses minimal permissions:
-- `activeTab`: Allows the extension to interact with the current tab
+### Common Tracking Cookie Names:
+- Google Analytics: `_ga`, `_gid`, `_gat`, `_gac_`
+- Facebook Pixel: `_fbp`, `_fbc`
+- Google Ads: `_utm`, `_clck`, `_clsk`
+- General tracking: `track`, `analytics`, `pixel`, `beacon`
+- User identification: `uid`, `user_id`, `session_id`, `visitor_id`
 
-## Development
+### Known Tracking Domains:
+- Google services (analytics, ads, etc.)
+- Facebook and Instagram
+- Amazon advertising
+- Bing and other search engines
+- Taboola, Outbrain, and other content networks
 
-To make changes:
+## 🔒 Privacy & Security
+
+- **Local Processing**: All cookie analysis happens locally in your browser
+- **No Data Collection**: The extension doesn't collect or transmit any personal data
+- **Minimal Permissions**: Only requests necessary permissions for cookie management
+- **Transparent Operation**: Clear explanations of what cookies are detected and why
+
+## 🛠️ Development
+
+### Making Changes:
 1. Edit the files as needed
 2. Go to `chrome://extensions/`
 3. Click the refresh icon on your extension
 4. Test the changes
 
-## License
+### Key Components:
+- **`manifest.json`**: Defines permissions, background scripts, and content scripts
+- **`popup.html/js`**: Creates the privacy dashboard interface
+- **`content.js`**: Handles in-page privacy notifications
+- **`background.js`**: Manages cookie monitoring and web request analysis
 
-This project is licensed under the MIT License. 
+## 📋 Permissions
+
+This extension uses the following permissions:
+- `cookies`: To read, analyze, and remove cookies
+- `webRequest`: To monitor web requests for cookie setting
+- `storage`: To save user preferences and decisions
+- `activeTab`: To interact with the current tab
+- `scripting`: For content script injection
+
+## 🎨 Customization
+
+You can easily customize the extension by:
+- Modifying tracking patterns in `background.js`
+- Adjusting the UI styling in `popup.html` and `content.js`
+- Adding new privacy features
+- Changing notification timing and behavior
+
+## 🔮 Future Features
+
+Planned enhancements for future versions:
+- Integration with DuckDuckGo Tracker Radar database
+- More granular cookie categorization
+- Advanced cookie management interface
+- Privacy score for websites
+- Integration with privacy policy databases
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit issues and pull requests to improve the extension.
+
+---
+
+**Privacy Sentinel** - Protecting your privacy, one cookie at a time! 🛡️ 
