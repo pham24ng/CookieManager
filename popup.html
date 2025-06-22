@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 300px;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 10px;
+    }
+    
+    .container {
+      text-align: center;
+    }
+    
+    h1 {
+      margin: 0 0 15px 0;
+      font-size: 24px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .message {
+      font-size: 16px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    
+    .button {
+      background: rgba(255,255,255,0.2);
+      border: 2px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    
+    .button:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>👋 Hello!</h1>
+    <div class="message">
+      Welcome to your new Chrome extension! This popup appears when you click the extension icon.
+    </div>
+    <button class="button" id="showAlert">Show Alert</button>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 
