@@ -1,6 +1,6 @@
 console.log('=== POPUP.JS LOADING ===');
 
-// Privacy Sentinel Popup Script
+// Cookie Manager Popup Script
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Popup loaded, setting up buttons...');
   

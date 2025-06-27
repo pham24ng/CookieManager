@@ -1,4 +1,4 @@
-// Privacy Sentinel Content Script
+// Cookie Manager Content Script
 (function() {
   'use strict';
   
@@ -7,9 +7,9 @@
   let lastCookieCount = 0;
   
   // Initialize content script
-  initializePrivacySentinel();
+  initializeCookieManager();
   
-  async function initializePrivacySentinel() {
+  async function initializeCookieManager() {
     try {
       // Check if we should show notification for this domain
       const shouldShow = await shouldShowPrivacyNotification();
@@ -22,7 +22,7 @@
       }
       
     } catch (error) {
-      console.error('Privacy Sentinel initialization error:', error);
+      console.error('Cookie Manager initialization error:', error);
     }
   }
   
@@ -346,5 +346,5 @@
     }, 3000);
   }
   
-  console.log('Privacy Sentinel content script loaded for:', currentDomain);
+  console.log('Cookie Manager content script loaded for:', currentDomain);
 })(); 

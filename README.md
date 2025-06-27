@@ -1,4 +1,4 @@
-# Privacy Sentinel Chrome Extension
+# Cookie Manager Chrome Extension
 
 A privacy-focused Chrome extension that enhances user privacy by providing transparency and control over website cookies. The extension proactively analyzes cookies on newly visited websites, identifies those with potential tracking capabilities, and empowers users to make informed decisions about their acceptance.
 
@@ -34,8 +34,8 @@ A privacy-focused Chrome extension that enhances user privacy by providing trans
    - Navigate to and select the folder you extracted from the ZIP file
    - Click "Select Folder"
 
-5. **Start Using Privacy Sentinel**
-   - The extension icon (🛡️) should now appear in your Chrome toolbar
+5. **Start Using Cookie Manager**
+   - The extension icon should now appear in your Chrome toolbar
    - Visit any website to see it in action
    - Click the icon to open the privacy dashboard
 
@@ -173,4 +173,4 @@ Contributions are welcome! Please feel free to submit issues and pull requests t
 
 ---
 
-**Privacy Sentinel** - Protecting your privacy, one cookie at a time! 🛡️ 
+**Cookie Manager** - Managing your cookies, protecting your privacy! 🛡️ 

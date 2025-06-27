@@ -1,4 +1,4 @@
-// Privacy Sentinel Background Service Worker
+// Cookie Manager Background Service Worker
 console.log('=== BACKGROUND SCRIPT LOADING ===');
 
 chrome.runtime.onInstalled.addListener(() => {
@@ -66,7 +66,7 @@ async function updatePopupForTab(tab) {
         tabId: tab.id 
       });
       chrome.action.setTitle({ 
-        title: `Privacy Sentinel - ${trackingCookies.length} tracking cookies detected`,
+        title: `Cookie Manager - ${trackingCookies.length} tracking cookies detected`,
         tabId: tab.id 
       });
     } else {
@@ -75,7 +75,7 @@ async function updatePopupForTab(tab) {
         tabId: tab.id 
       });
       chrome.action.setTitle({ 
-        title: 'Privacy Sentinel - No tracking cookies detected',
+        title: 'Cookie Manager - No tracking cookies detected',
         tabId: tab.id 
       });
     }
