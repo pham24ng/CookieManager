@@ -122,6 +122,45 @@ The extension detects tracking cookies based on:
 
 ## 🔒 Privacy & Security
 
+### Security Analysis
+
+**Risk Level: LOW** ✅
+
+This extension is designed with security and privacy in mind:
+
+#### ✅ Security Strengths:
+- **No Network Communication** - The extension doesn't make any external API calls or send data anywhere
+- **Local Processing Only** - All cookie analysis happens locally in your browser
+- **Minimal Permissions** - Only requests necessary permissions for cookie management
+- **Open Source** - Code is transparent and can be reviewed by anyone
+- **No Data Collection** - Doesn't collect, store, or transmit any personal information
+- **No External Dependencies** - Doesn't load external scripts or resources
+
+#### 🔍 Current Permissions:
+- `cookies`: To read, analyze, and remove cookies
+- `webRequest`: To monitor web requests for cookie setting
+- `storage`: To save user preferences and decisions
+- `activeTab`: To interact with the current tab
+- `scripting`: For content script injection
+
+#### ⚠️ Important Security Notice:
+
+**The extension should NOT ask for any additional permissions beyond those listed above.** If you see a prompt requesting additional permissions (such as access to all websites, personal data, or other sensitive information), this may indicate that the original code has been tampered with. In such cases:
+
+1. **DO NOT proceed** with the installation
+2. **Download the extension** directly from this GitHub repository
+3. **Verify the code** hasn't been modified
+4. **Report any suspicious behavior** by opening an issue on GitHub
+
+#### 🛡️ Security Best Practices:
+- **Review the code** - Since it's open source, you can inspect the code before installation
+- **Check permissions** - Verify the extension only requests the permissions listed above
+- **Monitor behavior** - Watch for any unexpected network activity or data transmission
+- **Use in trusted environments** - Consider the context where you're using the extension
+- **Keep updated** - Use the latest version from this repository
+
+### Privacy Protection
+
 - **Local Processing**: All cookie analysis happens locally in your browser
 - **No Data Collection**: The extension doesn't collect or transmit any personal data
 - **Minimal Permissions**: Only requests necessary permissions for cookie management
