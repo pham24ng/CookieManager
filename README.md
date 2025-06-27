@@ -14,6 +14,10 @@ A privacy-focused Chrome extension that enhances user privacy by providing trans
 
 ## 🚀 Installation
 
+### ⚠️ Important Notice
+
+This repository was developed with AI assistance (vibe-coded). While the extension has been tested and should work as intended, please proceed with caution, especially if you're a developer planning to modify or build upon this code. Review the code thoroughly before using it in production environments.
+
 ### For End Users:
 
 1. **Download the Extension**
