@@ -14,6 +14,31 @@ A privacy-focused Chrome extension that enhances user privacy by providing trans
 
 ## 🚀 Installation
 
+### For End Users:
+
+1. **Download the Extension**
+   - Click the green "Code" button on this GitHub page
+   - Select "Download ZIP"
+   - Extract the ZIP file to a folder on your computer
+
+2. **Open Chrome and go to Extensions**
+   - Open Google Chrome browser
+   - Type `chrome://extensions/` in the address bar and press Enter
+   - Or go to Chrome Menu (⋮) → More Tools → Extensions
+
+3. **Enable Developer Mode**
+   - Toggle the "Developer mode" switch in the top right corner of the extensions page
+
+4. **Load the Extension**
+   - Click "Load unpacked" button
+   - Navigate to and select the folder you extracted from the ZIP file
+   - Click "Select Folder"
+
+5. **Start Using Privacy Sentinel**
+   - The extension icon (🛡️) should now appear in your Chrome toolbar
+   - Visit any website to see it in action
+   - Click the icon to open the privacy dashboard
+
 ### For Development/Testing:
 
 1. **Download or clone this repository**
