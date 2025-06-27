@@ -77,10 +77,6 @@ This repository was developed with AI assistance (vibe-coded). While the extensi
 ├── popup.js           # Popup functionality and cookie analysis
 ├── content.js         # Content script for page-level privacy notifications
 ├── background.js      # Background service worker for cookie monitoring
-├── icons/             # Extension icons (placeholders)
-│   ├── icon16.png
-│   ├── icon48.png
-│   └── icon128.png
 └── README.md          # This file
 ```
 
